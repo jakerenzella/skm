@@ -28,12 +28,13 @@ const guiStart = function () {
 }
 
 const cliStart = function () {
-  let cmdName = argv['_'][0]
+  let cmdName = argv['_'][0] || "help"
   cli.execute(cmdName, argv, app.quit)
 }
 
 prepare()
-app.on('ready', isGuiStart ? guiStart : cliStart)
+// app.on('ready', isGuiStart ? guiStart : cliStart)
+app.on('ready', cliStart)
 
 process.on('SIGABRT' || 'SIGINT', function () {
   console.log('Quitting SKM')
