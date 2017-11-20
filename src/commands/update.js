@@ -15,7 +15,7 @@ const updateSplashKit = function (callback) {
     callback(Error(`can't find SplashKit, please install splashkit before updating!`))
   } else {
     spinner.start()
-    utils.runGit(`git -C ${installPath} pull`, function (error, stdout, stderr) {
+    utils.runGit(`git -C ${installPath} reset --hard && git -C ${installPath} pull`, function (error, stdout, stderr) {
       if (error) {
         spinner.fail()
         return callback(error)
